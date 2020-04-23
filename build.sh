@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/sh
 sudo docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community && \
 sudo mkdir -p \
 /srv/e/src \
