@@ -25,7 +25,6 @@ jobs:
     # Runs a single command using the runners shell
     - name: Get system info
       run: |
-#        docker info
         whoami
         uname -a
         pwd
