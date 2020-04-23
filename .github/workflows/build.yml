@@ -24,16 +24,29 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Check Docker
-      run: dpkg -l docker-ce
+      run: | docker info
+        whoami
+        uname -a
+        pwd
 
-    # Runs a set of commands using the runners shell
+    - name: Create directories
+      run: mkdir -p \
+        /mnt/e/src \
+        /mnt/e/zips \
+        /mnt/e/logs \
+        /mnt/e/ccache
+
     - name: Pull docker image for build process
-      run: |
-        echo Docker pull
-        docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
-        echo Create directories
-        mkdir -p \
-        /srv/e/src \
-        /srv/e/zips \
-        /srv/e/logs \
-        /srv/e/ccache
+      run: docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
+    
+    - name: Build ROM
+      run: docker run \
+        -v "/mnt/e/src:/srv/src" \
+        -v "/mnt/e/zips:/srv/zips" \
+        -v "/mnt/e/logs:/srv/logs" \
+        -v "/mnt/e/ccache:/srv/ccache" \
+        -e "BRANCH_NAME=v1-pie" \
+        -e "DEVICE_LIST=capricorn" \
+        -e "OTA_URL=<ota-server-url>" \
+        -e "REPO=https://gitlab.e.foundation/e/os/android.git" \
+        registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
