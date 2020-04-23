@@ -24,7 +24,8 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Check Docker
-      run: | docker info
+      run: |
+        docker info
         whoami
         uname -a
         pwd
