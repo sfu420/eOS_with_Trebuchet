@@ -40,4 +40,4 @@ jobs:
 #      run: docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
     
     - name: Build ROM
-      run: docker run -v /mnt/e/src:/srv/src -v /mnt/e/zips:/srv/zips -v /mnt/e/logs:/srv/logs -v /mnt/e/ccache:/srv/ccache registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
+      run: docker run -v /mnt/e/src:/srv/src -v /mnt/e/zips:/srv/zips -v /mnt/e/logs:/srv/logs -v /mnt/e/ccache:/srv/ccache -e "BRANCH_NAME=v1-pie" -e "DEVICE_LIST=capricorn" -e "REPO=https://gitlab.e.foundation/e/os/android.git" registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
