@@ -1,12 +1,12 @@
 #!/bin/bash
 
-docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community && \
-mkdir -p \
+sudo docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community && \
+sudo mkdir -p \
 /srv/e/src \
 /srv/e/zips \
 /srv/e/logs \
 /srv/e/ccache && \
-docker run \
+sudo docker run \
 -v "/srv/e/src:/srv/src" \
 -v "/srv/e/zips:/srv/zips" \
 -v "/srv/e/logs:/srv/logs" \
