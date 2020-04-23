@@ -27,14 +27,16 @@ jobs:
         uname -a
         pwd
         ls -la ~/work
+        df -h
+        mount
 
     - name: Create directories
       run: | 
           mkdir -p ~/work/e/src ~/work/e/zips ~/work/e/logs ~/work/e/ccache
-          ls -la ~/work
+          ls -la ~/work/e
 
 #    - name: Pull docker image for build process
 #      run: docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
     
-    - name: Build ROM
-      run: docker run -v ~/work/e/src:/srv/src -v ~/work/e/zips:/srv/zips -v ~/work/e/logs:/srv/logs -v ~/work/e/ccache:/srv/ccache -e BRANCH_NAME=v1-pie -e DEVICE_LIST=capricorn -e REPO=https://gitlab.e.foundation/e/os/android.git registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
+#    - name: Build ROM
+#      run: docker run -v ~/work/e/src:/srv/src -v ~/work/e/zips:/srv/zips -v ~/work/e/logs:/srv/logs -v ~/work/e/ccache:/srv/ccache -e BRANCH_NAME=v1-pie -e DEVICE_LIST=capricorn -e REPO=https://gitlab.e.foundation/e/os/android.git registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
