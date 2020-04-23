@@ -49,4 +49,4 @@ jobs:
         -e "BRANCH_NAME=v1-pie" \
         -e "DEVICE_LIST=capricorn" \
         -e "REPO=https://gitlab.e.foundation/e/os/android.git" \
-        registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
+        docker-lineage-cicd:community
