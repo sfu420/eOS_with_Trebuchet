@@ -23,9 +23,9 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-    - name: Check Docker
+    - name: Get system info
       run: |
-        docker info
+#        docker info
         whoami
         uname -a
         pwd
@@ -37,8 +37,8 @@ jobs:
         /mnt/e/logs \
         /mnt/e/ccache
 
-    - name: Pull docker image for build process
-      run: docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
+#    - name: Pull docker image for build process
+#      run: docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
     
     - name: Build ROM
       run: docker run \
@@ -49,4 +49,4 @@ jobs:
         -e "BRANCH_NAME=v1-pie" \
         -e "DEVICE_LIST=capricorn" \
         -e "REPO=https://gitlab.e.foundation/e/os/android.git" \
-        docker-lineage-cicd:community
+        registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
