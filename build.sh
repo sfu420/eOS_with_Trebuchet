@@ -1,5 +1,8 @@
-#!/bin/sh
-sudo docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community && \
+#!/bin/bash
+echo Start
+dpkg -l docker-ce
+
+sudo docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
 sudo mkdir -p \
 /srv/e/src \
 /srv/e/zips \
