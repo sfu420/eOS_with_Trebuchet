@@ -1,13 +1,11 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build /e/OS ROM
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -28,12 +26,15 @@ jobs:
         whoami
         uname -a
         pwd
+        ls -la ~/work
 
     - name: Create directories
-      run: mkdir -p ~/e/src ~/e/zips ~/e/logs ~/e/ccache
+      run: | 
+          mkdir -p ~/work/e/src ~/work/e/zips ~/work/e/logs ~/work/e/ccache
+          ls -la ~/work
 
 #    - name: Pull docker image for build process
 #      run: docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
     
     - name: Build ROM
-      run: docker run -v ~/e/src:/srv/src -v ~/e/zips:/srv/zips -v ~/e/logs:/srv/logs -v ~/e/ccache:/srv/ccache -e BRANCH_NAME=v1-pie -e DEVICE_LIST=capricorn -e REPO=https://gitlab.e.foundation/e/os/android.git registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
+      run: docker run -v ~/work/e/src:/srv/src -v ~/work/e/zips:/srv/zips -v ~/work/e/logs:/srv/logs -v ~/work/e/ccache:/srv/ccache -e BRANCH_NAME=v1-pie -e DEVICE_LIST=capricorn -e REPO=https://gitlab.e.foundation/e/os/android.git registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
