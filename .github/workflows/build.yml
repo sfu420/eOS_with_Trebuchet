@@ -20,7 +20,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+#    - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
     - name: Get system info
@@ -30,14 +30,10 @@ jobs:
         pwd
 
     - name: Create directories
-      run: mkdir -p \
-        /mnt/e/src \
-        /mnt/e/zips \
-        /mnt/e/logs \
-        /mnt/e/ccache
+      run: mkdir -p ~/e/src ~/e/zips ~/e/logs ~/e/ccache
 
 #    - name: Pull docker image for build process
 #      run: docker pull registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
     
     - name: Build ROM
-      run: docker run -v /mnt/e/src:/srv/src -v /mnt/e/zips:/srv/zips -v /mnt/e/logs:/srv/logs -v /mnt/e/ccache:/srv/ccache -e "BRANCH_NAME=v1-pie" -e "DEVICE_LIST=capricorn" -e "REPO=https://gitlab.e.foundation/e/os/android.git" registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
+      run: docker run -v ~/e/src:/srv/src -v ~/e/zips:/srv/zips -v ~/e/logs:/srv/logs -v ~/e/ccache:/srv/ccache -e BRANCH_NAME=v1-pie -e DEVICE_LIST=capricorn -e REPO=https://gitlab.e.foundation/e/os/android.git registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
