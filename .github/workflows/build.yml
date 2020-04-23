@@ -48,6 +48,5 @@ jobs:
         -v "/mnt/e/ccache:/srv/ccache" \
         -e "BRANCH_NAME=v1-pie" \
         -e "DEVICE_LIST=capricorn" \
-        -e "OTA_URL=<ota-server-url>" \
         -e "REPO=https://gitlab.e.foundation/e/os/android.git" \
         registry.gitlab.e.foundation:5000/e/os/docker-lineage-cicd:community
